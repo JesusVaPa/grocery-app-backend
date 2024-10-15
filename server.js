@@ -116,7 +116,7 @@ app.get('/item/delete/:id', function(request, response){
 });
 
 app.listen(settingMap.port, settingMap.host, function(request, response){
-  console,log(
+  console.log(
     'Waiting for requests on' 
     + settingMap.host + ':'
     + settingMap.port
