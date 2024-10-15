@@ -3,6 +3,7 @@ const { get } = require('http');
 const
   expressObj = require('express'),
   morganObj = require('morgan'),
+  corsObj = require('cors'),
   app = expressObj(),
   groceryList = [],
   settingMap = {
@@ -60,8 +61,12 @@ function getIdx(item_id) {
 
 app.use(morganObj('dev'));
 app.use(expressObj.json());
+app.use(corsObj());
 
 app.all('/item/*?', function(request, response, next){
+  response.set('Access-Control-Allow-Origin', 'http://localhost:5173');
+  response.set('Access-Control-Allow-Headers', 'content-type');
+  response.set('Access-Control-Allow-Credentials', true);
   response.set('Content-Type', 'application/json');
   next();
 });
