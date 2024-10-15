@@ -1,12 +1,10 @@
 const axiosObj = require('axios');
 
-const itemId = 'c1'; 
-
 axiosObj({
   method: 'post',
-  url: `http://127.0.0.1:3000/item.update/${itemId}`,
+  url: 'http://127.0.0.1:3000/item/update/c3', 
   data: {
-    name: 'Updated Item Name'
+    name: 'Cheese'
   }
 })
   .then(function(response) {
