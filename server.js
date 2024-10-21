@@ -62,9 +62,10 @@ function getIdx(item_id) {
 app.use(morganObj('dev'));
 app.use(expressObj.json());
 app.use(corsObj());
+app.use(express.static(__dirname + '/static'));
 
 app.all('/item/*?', function(request, response, next){
-  response.set('Access-Control-Allow-Origin', 'http://localhost:5173');
+  response.set('Access-Control-Allow-Origin', 'http://localhost:3000');
   response.set('Access-Control-Allow-Headers', 'content-type');
   response.set('Access-Control-Allow-Credentials', true);
   response.set('Content-Type', 'application/json');
