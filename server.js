@@ -3,7 +3,7 @@ const { get } = require('http');
 const
   expressObj = require('express'),
   morganObj = require('morgan'),
-  corsObj = require('cors'),
+  cors = require('cors'),
   app = expressObj(),
   groceryList = [],
   settingMap = {
@@ -61,8 +61,13 @@ function getIdx(item_id) {
 
 app.use(morganObj('dev'));
 app.use(expressObj.json());
-app.use(corsObj());
-app.use(express.static(__dirname + '/static'));
+app.use(expressObj.static(__dirname + '/static'));
+
+app.use(cors({
+  origin: 'http://localhost:3000', 
+  credentials: true,
+  allowedHeaders: ['Content-Type'],
+}));
 
 app.all('/item/*?', function(request, response, next){
   response.set('Access-Control-Allow-Origin', 'http://localhost:3000');
@@ -118,7 +123,7 @@ app.get('/item/delete/:id', function(request, response){
   }
 });
 
-app.listen(settingMap.port, settingMap.host, function(){
+app.listen(settingMap.port, function(){
   console.log(
     'Waiting for requests on ' 
     + settingMap.host + ':' 
