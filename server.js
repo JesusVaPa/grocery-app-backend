@@ -8,7 +8,7 @@ const
   groceryList = [],
   settingMap = {
     host: '127.0.0.1',
-    port: 3000
+    port: 5173
   }
 ;
 
@@ -64,13 +64,13 @@ app.use(expressObj.json());
 app.use(expressObj.static(__dirname + '/static'));
 
 app.use(cors({
-  origin: 'http://localhost:3000', 
+  origin: 'http://localhost:5173', 
   credentials: true,
   allowedHeaders: ['Content-Type'],
 }));
 
 app.all('/item/*?', function(request, response, next){
-  response.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+  response.set('Access-Control-Allow-Origin', 'http://localhost:5173');
   response.set('Access-Control-Allow-Headers', 'content-type');
   response.set('Access-Control-Allow-Credentials', true);
   response.set('Content-Type', 'application/json');
